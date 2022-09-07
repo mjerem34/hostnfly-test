@@ -42,6 +42,8 @@ end
 FactoryBot.use_parent_strategy = false
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
+  config.include RequestSpecHelper, type: :request
+  config.include RequestSpecHelper, type: :model
   config.include Capybara::RSpecMatchers, type: :helper
   config.include ActiveSupport::Testing::TimeHelpers
   config.include ActionView::Helpers::NumberHelper

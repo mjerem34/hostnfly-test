@@ -6,7 +6,6 @@ module Api
       module Response
         extend ActiveSupport::Concern
 
-        # https://github.com/rails/rails/issues/23923
         def render_json(object, status = 200)
           render plain: object.to_json, content_type: 'application/json', status: status
         end
