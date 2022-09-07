@@ -46,7 +46,6 @@ RSpec.configure do |config|
   config.include ActiveSupport::Testing::TimeHelpers
   config.include ActionView::Helpers::NumberHelper
 
-
   config.before :all do
     DatabaseCleaner.clean_with :truncation, except: %w[ar_internal_metadata]
     DatabaseCleaner.strategy = :transaction

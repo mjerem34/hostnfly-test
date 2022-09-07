@@ -14,7 +14,11 @@ AllCops:
     - vendor/**/*
     - lib/tasks/**/*
     - config/initializers/*
+
   TargetRubyVersion: 2.5.1
+
+RSpec/ExampleLength:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
@@ -28,6 +32,12 @@ Style/FormatStringToken:
 
 Layout/LineLength:
   Max: 100
+
+Metrics/BlockLength:
+  Exclude:
+    - config/routes.rb
+    - app/serializers/**/*
+    - spec/**/*
 
 Rails/BulkChangeTable:
   Enabled: false
