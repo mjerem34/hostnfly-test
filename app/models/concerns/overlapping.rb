@@ -2,9 +2,6 @@
 
 module Overlapping
   extend ActiveSupport::Concern
-  included do
-    validate :nonoverlapping_booking
-  end
 
   private
 

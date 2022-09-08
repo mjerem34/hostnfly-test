@@ -8,4 +8,7 @@ class Reservation < ApplicationRecord
 
   validates :start_date, :end_date, presence: true
   validates :listing_id, uniqueness: { scope: %i[start_date end_date] }
+
+  validate :nonoverlapping_booking
+  validate :start_date_is_before_end_date
 end

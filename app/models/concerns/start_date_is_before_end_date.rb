@@ -2,9 +2,6 @@
 
 module StartDateIsBeforeEndDate
   extend ActiveSupport::Concern
-  included do
-    validate :start_date_is_before_end_date
-  end
 
   private
 
