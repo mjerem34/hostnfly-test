@@ -3,6 +3,7 @@
 describe Listing, type: :model do
   it { is_expected.to have_many(:bookings).dependent(:destroy) }
   it { is_expected.to have_many(:reservations).dependent(:destroy) }
+  it { is_expected.to have_many(:missions).dependent(:destroy) }
 
   it { is_expected.to validate_presence_of(:num_rooms) }
 
