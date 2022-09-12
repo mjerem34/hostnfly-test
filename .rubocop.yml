@@ -17,6 +17,12 @@ AllCops:
 
   TargetRubyVersion: 2.5.1
 
+RSpec/NestedGroups:
+  Max: 7
+
+RSpec/LetSetup:
+  Enabled: false
+
 RSpec/ExampleLength:
   Enabled: false
 

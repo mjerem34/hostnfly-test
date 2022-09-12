@@ -22,7 +22,6 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 5.1'
   gem 'rspec-rails', '~> 5.0'
   gem 'pry', '~> 0.12.2'
-  gem 'rspec_junit_formatter', '0.5.1'
   gem 'rubocop', '~> 0.80.0', require: false
   gem 'rubocop-rails', '~> 2.5.0'
   gem 'rubocop-rspec', '~> 1.38.0', require: false

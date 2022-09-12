@@ -61,4 +61,55 @@ describe Reservation, type: :model do
                  start_date: [{ error: :overlap }], end_date: [{ error: :overlap }] })
     end
   end
+
+  describe '#callbacks' do
+    describe 'after_create_commit' do
+      let!(:listing) { create(:listing) }
+      let(:reservation) do
+        build(:reservation, start_date: 3.days.from_now, end_date: 4.days.from_now,
+                            listing: listing)
+      end
+
+      describe 'create_checkout_checkin_mission' do
+        it 'creates the checkout_checkin_mission' do
+          expect { reservation.save }.to change(
+            Mission.where(listing_id: reservation.listing_id,
+                          date: reservation.end_date,
+                          price: 10 * listing.num_rooms,
+                          mission_type: :checkout_checkin), :count
+          ).by(1)
+        end
+
+        context 'when a last_checkout_mission is already present the same day' do
+          let!(:mission) do
+            create(:mission, date: reservation.end_date, mission_type: :last_checkout,
+                             listing: listing)
+          end
+
+          it 'does not create the checkout_checkin_mission' do
+            expect { reservation.save }.to change(
+              Mission.where(listing_id: reservation.listing_id,
+                            date: reservation.end_date,
+                            price: 10 * listing.num_rooms,
+                            mission_type: :checkout_checkin), :count
+            ).by(0)
+          end
+        end
+      end
+    end
+
+    describe 'before_destroy' do
+      let!(:listing) { create(:listing) }
+      let!(:reservation) do
+        create(:reservation, start_date: 3.days.from_now, end_date: 6.days.from_now,
+                             listing: listing)
+      end
+
+      it 'destroys the associated missions' do
+        expect { reservation.destroy }.to change(
+          Mission.where(listing_id: reservation.listing_id), :count
+        ).by(-1)
+      end
+    end
+  end
 end
