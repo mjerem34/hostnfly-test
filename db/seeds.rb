@@ -1,19 +1,17 @@
-# frozen_string_literal: true
+Booking.delete_all
+Reservation.delete_all
+Mission.delete_all
+Listing.delete_all
 
-require 'json'
+Listing.create!(num_rooms: 2)
+Listing.create!(num_rooms: 1)
+Listing.create!(num_rooms: 3)
 
-filepath = File.join(Rails.root, 'db', 'input.json')
-serialized_input = File.read(filepath)
-input = JSON.parse(serialized_input)
+Booking.create!(listing_id: Listing.first.id, start_date: "2016-10-10".to_date, end_date: "2016-10-15".to_date)
+Booking.create!(listing_id: Listing.first.id, start_date: "2016-10-16".to_date, end_date: "2016-10-20".to_date)
+Booking.create!(listing_id: Listing.second.id, start_date: "2016-10-15".to_date, end_date: "2016-10-20".to_date)
 
-input['listings'].each { |listing| Listing.create!(num_rooms: listing['num_rooms']) }
-
-input['bookings'].each do |booking|
-  Booking.create!(start_date: booking['start_date'], end_date: booking['end_date'],
-                  listing_id: booking['listing_id'])
-end
-
-input['reservations'].each do |reservation|
-  Reservation.create!(start_date: reservation['start_date'], end_date: reservation['end_date'],
-                      listing_id: reservation['listing_id'])
-end
+Reservation.create!(listing_id: Listing.first.id, start_date: "2016-10-11".to_date, end_date: "2016-10-13".to_date)
+Reservation.create!(listing_id: Listing.first.id, start_date: "2016-10-13".to_date, end_date: "2016-10-15".to_date)
+Reservation.create!(listing_id: Listing.first.id, start_date: "2016-10-16".to_date, end_date: "2016-10-20".to_date)
+Reservation.create!(listing_id: Listing.second.id, start_date: "2016-10-15".to_date, end_date: "2016-10-18".to_date)
