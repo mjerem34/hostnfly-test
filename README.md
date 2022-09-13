@@ -5,7 +5,8 @@ Let's code a Rails app for a listing rentals management company
 1. [Introduction](#1-introduction)
 2. [Technical stack](#2-technical-stack)
 3. [Setup](#3-setup)
-4. [Spec](#4-spec)
+4. [Documentation](#4-documentation)
+5. [Spec](#5-spec)
 
 ## 1. Introduction
 
@@ -63,7 +64,46 @@ rails db:create db:migrate db:seed
 rails server
 ```
 
-## 4. Spec
+## 4. Documentation
+- [ ] INDEX : Listings
+`GET http://localhost:3000/api/v1/listings`
+
+- [ ] SHOW : Listing
+`GET http://localhost:3000/api/v1/listings/:id`
+
+- [ ] CREATE : Listing
+`POST http://localhost:3000/api/v1/listings/:id`
+
+params: 
+```
+{
+	"listing": {
+		"num_rooms": 3
+	}
+}
+```
+
+- [ ] UPDATE : Listing
+`PUT http://localhost:3000/api/v1/listings/:id`
+
+params: 
+```
+{
+	"listing": {
+		"num_rooms": 3
+	}
+}
+```
+
+- [ ] DELETE : Listing
+`DELETE http://localhost:3000/api/v1/listings/:id`
+
+
+- [ ] INDEX : Missions
+`GET http://localhost:3000/api/v1/missions`
+
+
+## 5. Spec
 
 - [ ] As an employee, I can see a specific listing
 - [ ] As an employee, I can see a list of listings
